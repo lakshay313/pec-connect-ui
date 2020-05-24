@@ -5,6 +5,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrModule } from 'ngx-toastr';
+import { CookieService } from 'ngx-cookie-service';
+
 
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
@@ -12,6 +14,9 @@ import { ComponentsModule } from './components/components.module';
 import { AppComponent } from './app.component';
 
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
+import { AuthService } from './services/auth.service';
+import { DataService } from './services/data.service';
+import { GenericService } from './services/generic-service';
 
 @NgModule({
   imports: [
@@ -24,12 +29,13 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
     NgbModule,
     ToastrModule.forRoot()
   ],
-  declarations: [
-    AppComponent,
-    AdminLayoutComponent
-
+  declarations: [AppComponent, AdminLayoutComponent],
+  providers: [
+    AuthService,
+    DataService,
+    GenericService,
+    CookieService
   ],
-  providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

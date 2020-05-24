@@ -3,6 +3,8 @@ import { ROUTES } from '../sidebar/sidebar.component';
 import {Location, LocationStrategy, PathLocationStrategy} from '@angular/common';
 import { Router } from '@angular/router';
 import Chart from 'chart.js';
+import { CookieService } from 'ngx-cookie-service';
+import { DataService } from '../../services/data.service';
 
 @Component({
   selector: 'app-navbar',
@@ -18,12 +20,15 @@ export class NavbarComponent implements OnInit {
 
     public isCollapsed = true;
 
-    constructor(location: Location,  private element: ElementRef, private router: Router) {
+    constructor(
+      private cookieService: CookieService,
+      public dataService: DataService,
+      location: Location,  private element: ElementRef, private router: Router) {
       this.location = location;
           this.sidebarVisible = false;
     }
 
-    ngOnInit(){
+    ngOnInit() {
       this.listTitles = ROUTES.filter(listTitle => listTitle);
       const navbar: HTMLElement = this.element.nativeElement;
       this.toggleButton = navbar.getElementsByClassName('navbar-toggler')[0];
@@ -37,14 +42,20 @@ export class NavbarComponent implements OnInit {
      });
     }
 
-    collapse(){
+    logout() {
+      this.dataService.user = null;
+      this.dataService.token = null;
+      this.cookieService.deleteAll('/');
+      this.router.navigate(['/login']);
+    }
+    collapse() {
       this.isCollapsed = !this.isCollapsed;
       const navbar = document.getElementsByTagName('nav')[0];
       console.log(navbar);
       if (!this.isCollapsed) {
         navbar.classList.remove('navbar-transparent');
         navbar.classList.add('bg-white');
-      }else{
+      } else {
         navbar.classList.add('navbar-transparent');
         navbar.classList.remove('bg-white');
       }
@@ -59,7 +70,7 @@ export class NavbarComponent implements OnInit {
           mainPanel.style.position = 'fixed';
         }
 
-        setTimeout(function(){
+        setTimeout(function() {
             toggleButton.classList.add('toggled');
         }, 500);
 
@@ -73,7 +84,7 @@ export class NavbarComponent implements OnInit {
         const mainPanel =  <HTMLElement>document.getElementsByClassName('main-panel')[0];
 
         if (window.innerWidth < 991) {
-          setTimeout(function(){
+          setTimeout(function() {
             mainPanel.style.position = '';
           }, 500);
         }
@@ -114,7 +125,7 @@ export class NavbarComponent implements OnInit {
 
             if (html.querySelectorAll('.main-panel')) {
                 document.getElementsByClassName('main-panel')[0].appendChild($layer);
-            }else if (html.classList.contains('off-canvas-sidebar')) {
+            } else if (html.classList.contains('off-canvas-sidebar')) {
                 document.getElementsByClassName('wrapper-full-page')[0].appendChild($layer);
             }
 
@@ -138,15 +149,15 @@ export class NavbarComponent implements OnInit {
         }
     };
 
-    getTitle(){
+    getTitle() {
       var titlee = this.location.prepareExternalUrl(this.location.path());
-      if(titlee.charAt(0) === '#'){
+      if(titlee.charAt(0) === '#') {
           titlee = titlee.slice( 2 );
       }
       titlee = titlee.split('/').pop();
 
-      for(var item = 0; item < this.listTitles.length; item++){
-          if(this.listTitles[item].path === titlee){
+      for(var item = 0; item < this.listTitles.length; item++) {
+          if(this.listTitles[item].path === titlee) {
               return this.listTitles[item].title;
           }
       }

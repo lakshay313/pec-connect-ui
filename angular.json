@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "now-ui-dashboard-angular": {
+    "pec-connect-ui": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -53,18 +53,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "now-ui-dashboard-angular:build"
+            "browserTarget": "pec-connect-ui:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "now-ui-dashboard-angular:build:production"
+              "browserTarget": "pec-connect-ui:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "now-ui-dashboard-angular:build"
+            "browserTarget": "pec-connect-ui:build"
           }
         },
         "test": {
@@ -101,7 +101,7 @@
         }
       }
     },
-    "now-ui-dashboard-angular-e2e": {
+    "pec-connect-ui-e2e": {
       "root": "e2e",
       "sourceRoot": "e2e",
       "projectType": "application",
@@ -110,7 +110,7 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "./protractor.conf.js",
-            "devServerTarget": "now-ui-dashboard-angular:serve"
+            "devServerTarget": "pec-connect-ui:serve"
           }
         },
         "lint": {
@@ -125,11 +125,11 @@
       }
     }
   },
-  "defaultProject": "now-ui-dashboard-angular",
+  "defaultProject": "pec-connect-ui",
   "schematics": {
     "@schematics/angular:component": {
       "prefix": "app",
-      "styleext": "scss"
+      "styleext": "css"
     },
     "@schematics/angular:directive": {
       "prefix": "app"
