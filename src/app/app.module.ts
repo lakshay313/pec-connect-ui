@@ -17,6 +17,7 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
 import { AuthService } from './services/auth.service';
 import { DataService } from './services/data.service';
 import { GenericService } from './services/generic-service';
+import { RecordService } from './services/record.service';
 
 @NgModule({
   imports: [
@@ -34,7 +35,8 @@ import { GenericService } from './services/generic-service';
     AuthService,
     DataService,
     GenericService,
-    CookieService
+    CookieService,
+    RecordService
   ],
   bootstrap: [AppComponent]
 })
