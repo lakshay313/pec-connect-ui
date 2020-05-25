@@ -6,6 +6,7 @@ import { LoginRequest } from '../VO/login-request';
 import { DataService } from '../services/data.service';
 import { CookieService } from 'ngx-cookie-service';
 import { Constant } from '../common/constant';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -31,12 +32,13 @@ export class LoginComponent implements OnInit {
       this.redirect();
     });
   }
+
   redirect() {
     const token = this.cookieService.get(Constant.ACCESS_TOKEN);
     if (!token) {
       this.router.navigate(['/login']);
-    } else {
-      this.router.navigate(['/dashboard']);
+    } else if (this.dataService.getRoles) {
+        this.router.navigate(['/dashboard']);
     }
   }
 }

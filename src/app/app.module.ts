@@ -18,6 +18,9 @@ import { AuthService } from './services/auth.service';
 import { DataService } from './services/data.service';
 import { GenericService } from './services/generic-service';
 import { RecordService } from './services/record.service';
+import { AuthHelper } from './services/auth.helper';
+import { AuthGuard } from './services/auth-guard.service';
+import { RecordAccessService } from './services/record-access.service';
 
 @NgModule({
   imports: [
@@ -36,7 +39,10 @@ import { RecordService } from './services/record.service';
     DataService,
     GenericService,
     CookieService,
-    RecordService
+    RecordService,
+    AuthHelper,
+    AuthGuard,
+    RecordAccessService
   ],
   bootstrap: [AppComponent]
 })

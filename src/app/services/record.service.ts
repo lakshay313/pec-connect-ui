@@ -19,6 +19,12 @@ export class RecordService {
     } );
   }
 
+  saveRecord(record): Observable<Record> {
+    return this.http.post<Record>('/pec-connect/record', record, {
+      headers: this.genericService.getHeaders()
+    });
+  }
+
 
 
 }

@@ -23,8 +23,7 @@ export class AppComponent implements OnInit {
   getUserDataOnReload() {
     const token = this.cookieService.get(Constant.ACCESS_TOKEN);
     if (token) {
-      console.log(this.dataService.getRoles());
-
+      this.dataService.getRoles();
     }
   }
 

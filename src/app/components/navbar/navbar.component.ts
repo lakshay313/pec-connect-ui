@@ -2,7 +2,6 @@ import { Component, OnInit, ElementRef } from '@angular/core';
 import { ROUTES } from '../sidebar/sidebar.component';
 import {Location, LocationStrategy, PathLocationStrategy} from '@angular/common';
 import { Router } from '@angular/router';
-import Chart from 'chart.js';
 import { CookieService } from 'ngx-cookie-service';
 import { DataService } from '../../services/data.service';
 
@@ -17,7 +16,7 @@ export class NavbarComponent implements OnInit {
       mobile_menu_visible: any = 0;
     private toggleButton: any;
     private sidebarVisible: boolean;
-
+    user_name: string;
     public isCollapsed = true;
 
     constructor(
@@ -40,6 +39,8 @@ export class NavbarComponent implements OnInit {
            this.mobile_menu_visible = 0;
          }
      });
+      this.user_name = this.dataService.getName();
+
     }
 
     logout() {
@@ -77,7 +78,7 @@ export class NavbarComponent implements OnInit {
         html.classList.add('nav-open');
 
         this.sidebarVisible = true;
-    };
+    }
     sidebarClose() {
         const html = document.getElementsByTagName('html')[0];
         this.toggleButton.classList.remove('toggled');
@@ -90,7 +91,7 @@ export class NavbarComponent implements OnInit {
         }
         this.sidebarVisible = false;
         html.classList.remove('nav-open');
-    };
+    }
     sidebarToggle() {
         // const toggleButton = this.toggleButton;
         // const html = document.getElementsByTagName('html')[0];
@@ -147,7 +148,7 @@ export class NavbarComponent implements OnInit {
             this.mobile_menu_visible = 1;
 
         }
-    };
+    }
 
     getTitle() {
       var titlee = this.location.prepareExternalUrl(this.location.path());
@@ -156,11 +157,11 @@ export class NavbarComponent implements OnInit {
       }
       titlee = titlee.split('/').pop();
 
-      for(var item = 0; item < this.listTitles.length; item++) {
-          if(this.listTitles[item].path === titlee) {
-              return this.listTitles[item].title;
-          }
-      }
-      return 'Dashboard';
+      // for(var item = 0; item < this.listTitles.length; item++) {
+      //     if(this.listTitles[item].path === titlee) {
+      //         return this.listTitles[item].title;
+      //     }
+      // }
+      return titlee;
     }
 }

@@ -4,6 +4,7 @@ import { BrowserModule  } from '@angular/platform-browser';
 import { Routes, RouterModule } from '@angular/router';
 
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
+import { AuthGuard } from './services/auth-guard.service';
 
 const routes: Routes = [
   {
@@ -17,6 +18,8 @@ const routes: Routes = [
   }, {
     path: '',
     component: AdminLayoutComponent,
+    canActivate: [AuthGuard],
+    canActivateChild: [AuthGuard],
     children: [
         {
       path: '',
@@ -30,6 +33,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [CommonModule, BrowserModule, RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [AuthGuard]
 })
 export class AppRoutingModule {}

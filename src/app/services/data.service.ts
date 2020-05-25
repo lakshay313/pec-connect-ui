@@ -19,4 +19,10 @@ export class DataService {
     });
     return this.user ? this.user.permissions : null;
   }
+
+  getName() {
+    return this.user ?
+      (this.user.first_name + ' ' + this.user.last_name)
+      : '';
+  }
 }

@@ -9,7 +9,7 @@
                     <span class="navbar-toggler-bar bar3"></span>
                 </button>
             </div>
-            <a class="navbar-brand" href="#pablo">{{getTitle()}}</a>
+            <p class="navbar-brand" style="text-transform: uppercase">{{getTitle()}}</p>
         </div>
         <button class="navbar-toggler" type="button" (click)="collapse()"
           [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
@@ -32,12 +32,11 @@
             <li class="nav-item" ngbDropdown>
               <a class="nav-link" id="dropdownBasic1" ngbDropdownToggle>
                 <i class="now-ui-icons users_single-02"></i>
-                <p>
+                <p style="text-transform: capitalize">{{user_name}}
                   <span class="d-lg-none d-md-block">Account</span>
                 </p>
               </a>
               <div class="dropdown-menu dropdown-menu-right" ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                <a class="dropdown-item" href="#">Profile</a>
                 <a class="dropdown-item" role="button" (click)="logout()">Logout</a>
               </div>
             </li>
